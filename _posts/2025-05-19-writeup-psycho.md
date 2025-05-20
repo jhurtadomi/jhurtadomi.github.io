@@ -1,5 +1,5 @@
 ---
-title: "PSYCHO"
+title: "PSYCHO DOCKERLABS"
 date: 2025-05-18 10:00:00 +0000
 categories: [DockerLabs]
 tags: [DockerLabs, CTF]
@@ -13,7 +13,7 @@ Es ideal para reforzar conocimientos sobre análisis de puertos, fuzzing, técni
 
 
 
-## Información General
+## INFORMACIÓN GENERAL
 
 - **Plataforma**: Dockerlabs
 - **Sistema Operativo**: Linux
@@ -24,7 +24,7 @@ Es ideal para reforzar conocimientos sobre análisis de puertos, fuzzing, técni
 ```python
 bash auto_deploy.sh psycho.tar
 ```
-![despliegue](/assets/img/DockerLabs/MachinePsycho/despliegue.png)
+![despliegue](/assets/img/DockerLab/MachinePsycho/despliegue.png)
 
 ## RECONOCIMIENTO
 ```python

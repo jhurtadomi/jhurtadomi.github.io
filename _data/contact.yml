@@ -6,8 +6,9 @@
 - type: twitter
   icon: "fa-brands fa-x-twitter"
 
-- type: email
-  icon: "fas fa-envelope"
+- type: HackTheBox
+  icon: "fas fa-cube"
+  url: "https://app.hackthebox.com/profile/1942692"
   noblank: true # open link in current tab
 
 - type: linkedin
