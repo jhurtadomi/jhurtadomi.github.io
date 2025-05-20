@@ -10,8 +10,9 @@
   icon: "fas fa-envelope"
   noblank: true # open link in current tab
 
-- type: rss
-  icon: "fas fa-rss"
+- type: linkedin
+  icon: "fab fa-linkedin"
+  url: "https://www.linkedin.com/in/jean-hurtado-8741a42a5"
   noblank: true
 # Uncomment and complete the url below to enable more contact options
 #
