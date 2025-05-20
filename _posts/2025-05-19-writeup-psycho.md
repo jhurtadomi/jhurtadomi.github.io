@@ -24,7 +24,7 @@ Es ideal para reforzar conocimientos sobre análisis de puertos, fuzzing, técni
 ```python
 bash auto_deploy.sh psycho.tar
 ```
-![despliegue](/assets/img/DockerLab/MachinePsycho/despliegue.png)
+![despliegue](/assets/img/DockerLabs/MachinePsycho/despliegue.png)
 
 ## RECONOCIMIENTO
 ```python
