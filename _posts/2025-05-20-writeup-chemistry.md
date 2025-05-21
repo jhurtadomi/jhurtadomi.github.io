@@ -24,10 +24,10 @@ Vamos a empezar tranquilo haciendo un ping a la maquina y tenemos conexión, de 
 
 Procedemos con un escaneo de puertos abiertos con `nmap`
 
-```ruby
+```bash
 nmap -p- -sS --min-rate 5000 -vvv -n -Pn -sCV 10.10.11.38 
 ```
-```ruby
+```bash
 22/tcp   open  ssh     syn-ack ttl 63 OpenSSH 8.2p1 Ubuntu 4ubuntu0.11 (Ubuntu Linux; protocol 2.0)
 | ssh-hostkey: 
 |   3072 b6:fc:20:ae:9d:1d:45:1d:0b:ce:d9:d0:20:f2:6f:dc (RSA)
@@ -153,7 +153,7 @@ _space_group_magn.name_BNS  "P  n'  m  a'  "
 >
 
 Nos ponemos en modo Listening en nuestra maquina Atacante Local con `NetCat`
-```ruby
+```bash
 nc -nlvp 1234
 ```
 
@@ -281,7 +281,7 @@ Una vez esto, podemos dirigirnos al directorio de root y averiguar si existe una
 ![id_rsa_root](/assets/img/HackTheBox/MachineChemistry/id_rsa_root.png)
 
 efectivamente, lo tenemos, copiamos esta clave y le damos permisos `chmod 600 id_rsa` solo de propietario
-```ruby
+```bash
 ssh -i id_rsa root@localhost
 ```
 ### SEGUNDA FLAG
