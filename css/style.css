@@ -1,0 +1,84 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  font-family: 'Fira Code', monospace;
+  background-color: #ffffff;
+  overflow: hidden;
+  position: relative;
+}
+
+#background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+}
+
+main.card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.avatar {
+  width: 250px;   /* Aumenta el tamaño aquí */
+  height: 250px;  /* Mantén la proporción cuadrada si deseas */
+  border-radius: 50%; /* Si quieres mantenerla circular */
+  object-fit: cover;  /* Asegura que se vea bien dentro del marco */
+  margin-bottom: 1rem;
+}
+
+
+.name {
+  font-size: 4rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  background-color: #eaeaea;
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.tagline {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.social-links a {
+  font-size: 24px;
+  color: #222;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.social-links a:hover {
+  transform: scale(1.2);
+  color: #3498db;
+}
