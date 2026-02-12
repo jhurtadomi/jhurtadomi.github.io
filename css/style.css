@@ -32,22 +32,26 @@ main.card {
   text-align: center;
   top: 50%;
   transform: translateY(-50%);
+  /* SIN FONDO - el contenido flota sobre las partículas */
 }
 
 .avatar {
-  width: 250px;   /* Aumenta el tamaño aquí */
-  height: 250px;  /* Mantén la proporción cuadrada si deseas */
-  border-radius: 50%; /* Si quieres mantenerla circular */
-  object-fit: cover;  /* Asegura que se vea bien dentro del marco */
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  object-fit: cover;
   margin-bottom: 1rem;
+  position: relative;
+  z-index: 2; /* Asegurar que la imagen esté sobre todo */
 }
-
 
 .name {
   font-size: 4rem;
   font-weight: 700;
   color: #111;
   margin-bottom: 10px;
+  position: relative;
+  z-index: 2;
 }
 
 .subtitle {
@@ -58,18 +62,24 @@ main.card {
   border-radius: 4px;
   margin-bottom: 10px;
   color: #333;
+  position: relative;
+  z-index: 2;
 }
 
 .tagline {
   font-size: 1rem;
   color: #555;
   margin-bottom: 30px;
+  position: relative;
+  z-index: 2;
 }
 
 .social-links {
   display: flex;
   justify-content: center;
   gap: 20px;
+  position: relative;
+  z-index: 2;
 }
 
 .social-links a {
